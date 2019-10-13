@@ -1,27 +1,76 @@
 const Node = require('./node');
 
 class LinkedList {
-    constructor() {}
+    constructor() {
+        this.length = 0;
+        this._head = null;
+        this._tail = null;
+    }
 
-    append(data) {}
+    append(data) {
+        let node = new Node(data, null, null);
+        if (!this._head) {
+            this._head = node;
+            this._tail = node;
+        } else {
+            this._tail.next = node;
+            node.prev = this._tail;
+            this._tail = node;
 
-    head() {}
+        }
+        this.length++;
 
-    tail() {}
+        return this;
+    }
 
-    at(index) {}
+    head() {
+        return this._head ? this._head.data : null;
+    }
 
-    insertAt(index, data) {}
+    tail() {
+        return this._tail ? this._tail.data : null;
+    }
 
-    isEmpty() {}
+    at(index) {
+        let _node = this._head;
+        for (let i = 0; i < index; i++) {
+            _node = _node.next;
+        }
+        return _node.data;
+    }
 
-    clear() {}
+    insertAt(index, data) {
+    }
 
-    deleteAt(index) {}
+    isEmpty() {
+        return !this.length;
+    }
 
-    reverse() {}
+    clear() {
+        this.length = 0;
+        this._head = null;
+        this._tail = null;
 
-    indexOf(data) {}
+        return this;
+    }
+
+    deleteAt(index) {
+        return
+    }
+
+    reverse() {
+    }
+
+    indexOf(data) {
+        let _node = this._head;
+        let index = null;
+        for (let i = 0; i < this.length; i++) {
+            _node = _node.next;
+            if (index !== null)
+                index = _node.data === data ? i : '';
+        }
+        return index ? index : -1;
+    }
 }
 
 module.exports = LinkedList;
